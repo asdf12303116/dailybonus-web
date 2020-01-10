@@ -1,18 +1,24 @@
 <template>
   <div class="dashboard-container">
     <div class="dashboard-text">name: {{ name }}</div>
+    <el-button @click="setName">测试按钮</el-button>
   </div>
 </template>
 
 <script>
+import service from '../../utils/request'
 import { mapGetters } from 'vuex'
-
 export default {
   name: 'Dashboard',
   computed: {
     ...mapGetters([
       'name'
     ])
+  },
+  methods: {
+    setName() {
+      service.get('/auth/userinfo')
+    }
   }
 }
 </script>
