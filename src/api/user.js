@@ -21,3 +21,10 @@ export function logout() {
     method: 'post'
   })
 }
+
+export function reflushToken() {
+  return request({
+    url: 'auth/refresh',
+    method: 'get'
+  })
+}

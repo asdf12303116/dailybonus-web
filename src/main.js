@@ -1,22 +1,18 @@
 import Vue from 'vue'
 
 import 'normalize.css/normalize.css' // A modern alternative to CSS resets
-
-import ElementUI, { Message } from 'element-ui'
+import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 // eslint-disable-next-line no-unused-vars
-import locale from 'element-ui/lib/locale/lang/en' // lang i18n
-
 import '@/styles/index.scss' // global css
-
 import App from './App'
 import store from './store'
 import router from './router'
 
 import '@/icons' // icon
 import '@/permission' // permission control
-
 import axios from 'axios'
+
 Vue.prototype.$axios = axios
 /**
  * If you don't want to use mock-server
@@ -41,9 +37,9 @@ Vue.config.productionTip = false
 const errorHandler = (error) => {
   console.error('抛出全局异常')
   console.error(error)
-  Message({
+  this.$message.error({
     message: error.response.data.message,
-    type: 'error',
+    showClose: true,
     duration: 5 * 1000
   })
 }
