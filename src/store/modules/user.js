@@ -69,7 +69,6 @@ const actions = {
   // get user info
   getInfo({ commit, state }) {
     const userinfo = getUserInfo(state.token)
-    console.log(userinfo)
     commit('SET_NAME', userinfo.username)
   },
 
@@ -113,6 +112,8 @@ const actions = {
             resolve()
           })
           .catch(error => {
+            removeToken()
+            commit('RESET_STATE')
             reject(error)
           })
       })
@@ -121,9 +122,8 @@ const actions = {
       const tokenExpiredDate = getTokenExiredTime()
       const timeOffset = (tokenExpiredDate -
         parseInt(nowDate)) / 1000
-      if (timeOffset < 0) {
+      if (timeOffset < 0 || isNaN(timeOffset)) {
         removeToken()
-        resetRouter()
         commit('RESET_STATE')
       }
       if (timeOffset <= 600) {
