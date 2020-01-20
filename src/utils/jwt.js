@@ -1,5 +1,10 @@
 export function getTokenPayload(Token) {
-  const TokenPayloadString = window.atob(Token.split('.')[1])
+  let TokenPayloadString = ''
+  try {
+    TokenPayloadString = window.atob(Token.split('.')[1])
+  } catch (err) {
+    return false
+  }
   return JSON.parse(TokenPayloadString)
 }
 

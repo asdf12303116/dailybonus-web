@@ -34,17 +34,6 @@ Vue.use(ElementUI)
 
 Vue.config.productionTip = false
 
-const errorHandler = (error) => {
-  console.error('抛出全局异常')
-  console.error(error)
-  this.$message.error({
-    message: error.response.data.message,
-    showClose: true,
-    duration: 5 * 1000
-  })
-}
-Vue.config.errorHandler = errorHandler
-Vue.prototype.$throw = (error) => errorHandler(error, this)
 new Vue({
   el: '#app',
   router,
